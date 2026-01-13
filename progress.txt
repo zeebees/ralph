@@ -1,0 +1,60 @@
+## Codebase Patterns
+(Patterns discovered during Ralph iterations - add new patterns here)
+
+- Example: Use Zod schemas for all API request/response validation
+- Example: Follow existing naming conventions in the codebase
+- i18n: Translation files are in zuzu-app/i18n/translations/{lang}.json
+- i18n: Import useTranslation from '../i18n' not from 'react-i18next' directly
+- i18n: Use nested keys like 'screen.section.key' for organization (e.g., login.button.continueWithGoogle)
+- i18n: All 4 languages (en, zh, es, fr) must be updated together
+- i18n: Use _one/_other suffix for pluralization (not _plural) due to i18next's simplifyPluralSuffix default
+
+---
+# Iteration Log
+(Append new entries below this line)
+
+## Iteration 1 - Admin Dashboard Implementation (2026-01-12)
+
+**Completed all 9 user stories:**
+
+### Phase 1: Project Setup (US-001 to US-004)
+- US-001: Created Next.js 16 project with TypeScript, Tailwind CSS, App Router in admin-dashboard/
+- US-002: Created lib/mongodb.ts with typed User, Contact, Screenshot interfaces and connection pooling
+- US-003: Created lib/s3.ts with AWS SDK v3 for signed URL generation
+- US-004: Created 4 API routes: /api/users, /api/users/[userId], /api/users/[userId]/contacts/[contactId], /api/screenshots/[screenshotId]/signed-url
+
+### Phase 2: UI Pages (US-005 to US-007)
+- US-005: Created /users page with table, relative time display, empty state, redirect from home
+- US-006: Created /users/[userId] page with user header, contacts grid, back button, 404 handling
+- US-007: Created /users/[userId]/contacts/[contactId] page with breadcrumb nav, screenshot grid
+
+### Phase 3: Advanced Features (US-008 to US-009)
+- US-008: Built lightbox viewer in ScreenshotGrid component with keyboard navigation (Escape, Arrow keys)
+- US-009: Added Copy Signed URL buttons on thumbnails and in lightbox with toast notifications
+
+**Files created in admin-dashboard/:**
+- src/lib/mongodb.ts - MongoDB connection with typed collections
+- src/lib/s3.ts - S3 signed URL generation
+- src/lib/utils.ts - formatRelativeTime, formatDate, formatFileSize utilities
+- src/app/page.tsx - Redirect to /users
+- src/app/layout.tsx - Header with "Admin Dashboard"
+- src/app/users/page.tsx - Users list
+- src/app/users/[userId]/page.tsx - User detail
+- src/app/users/[userId]/not-found.tsx - 404 page
+- src/app/users/[userId]/contacts/[contactId]/page.tsx - Contact detail
+- src/app/users/[userId]/contacts/[contactId]/not-found.tsx - 404 page
+- src/app/api/users/route.ts - List users API
+- src/app/api/users/[userId]/route.ts - User detail API
+- src/app/api/users/[userId]/contacts/[contactId]/route.ts - Contact detail API
+- src/app/api/screenshots/[screenshotId]/signed-url/route.ts - Signed URL API
+- src/components/ScreenshotGrid.tsx - Client component with lightbox and signed URL copy
+- .env.example - Environment variable template
+
+**Packages installed:**
+- mongodb ^7.0.0
+- @aws-sdk/client-s3
+- @aws-sdk/s3-request-presigner
+
+**All typecheck passes. Ready for browser testing.**
+
+

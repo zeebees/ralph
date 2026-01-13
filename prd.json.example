@@ -1,0 +1,60 @@
+{
+  "project": "neuron-ai",
+  "branchName": "ralph/example-feature",
+  "description": "Example Feature - Demonstrates the enhanced PRD format",
+  "testCommand": "npm test",
+  "buildCommand": "npm run build",
+  "devServerUrl": "http://localhost:8081",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Add validation for user input",
+      "description": "As a developer, I need input validation so that invalid data is rejected early.",
+      "acceptanceCriteria": [
+        "Validate email format using Zod",
+        "Return descriptive error messages",
+        "Typecheck passes"
+      ],
+      "testType": "unit",
+      "requiresBrowser": false,
+      "priority": 1,
+      "passes": false,
+      "failureCount": 0,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Add input field to form",
+      "description": "As a user, I want to enter my email in a form field.",
+      "acceptanceCriteria": [
+        "Email input field on the form",
+        "Shows validation error inline",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "testType": "e2e",
+      "requiresBrowser": true,
+      "priority": 2,
+      "passes": false,
+      "failureCount": 0,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Submit form to API",
+      "description": "As a user, I want to submit the form and see a confirmation.",
+      "acceptanceCriteria": [
+        "POST to /api/submit endpoint",
+        "Show success message on completion",
+        "Handle errors gracefully",
+        "Typecheck passes"
+      ],
+      "testType": "integration",
+      "requiresBrowser": true,
+      "priority": 3,
+      "passes": false,
+      "failureCount": 0,
+      "notes": ""
+    }
+  ]
+}
