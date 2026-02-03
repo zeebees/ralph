@@ -89,12 +89,19 @@ Before committing, check if you discovered learnings worth preserving:
 
 Only update AGENTS.md if you have **genuinely reusable knowledge** that would help future work.
 
-### 9. Commit
+### 9. Code Simplification
+Before committing, run the code-simplifier to clean up your changes:
+- Use `/code-simplifier` to review and simplify recently modified code
+- Focus on clarity, consistency, and maintainability
+- Ensure all functionality is preserved
+- If the simplifier makes changes, verify tests still pass: `{testCommand}`
+
+### 10. Commit
 - Stage all changes (code + tests + AGENTS.md if updated)
 - Commit with message: `feat: {storyId} - {title}`
 - Do NOT push (orchestrator handles that)
 
-### 10. Update Progress File
+### 11. Update Progress File
 Append your learnings to `ralph/progress.txt`:
 
 ```
@@ -109,7 +116,7 @@ Append your learnings to `ralph/progress.txt`:
 
 If you discovered a **reusable pattern**, also add it to the `## Codebase Patterns` section at the top of progress.txt.
 
-### 11. Clean Exit
+### 12. Clean Exit
 **Important:** If you notice your context is getting long or you're running low on space:
 - Complete the current step you're on
 - Commit all work so far
@@ -118,7 +125,7 @@ If you discovered a **reusable pattern**, also add it to the `## Codebase Patter
 
 It's better to exit cleanly with partial progress than to run out of context mid-task.
 
-### 12. Report Results
+### 13. Report Results
 Return a JSON object with your results:
 
 ```json
@@ -164,6 +171,7 @@ Before reporting success:
 - [ ] Build passes with no errors
 - [ ] Code follows existing patterns
 - [ ] AGENTS.md updated (if reusable learnings discovered)
+- [ ] Code simplified with `/code-simplifier`
 - [ ] Commit made with proper message
 - [ ] Progress.txt updated with learnings
 
@@ -219,12 +227,16 @@ Report failures with clear reasons:
 7. UPDATE AGENTS.md
    - Add to src/validators/AGENTS.md: "Email validation uses Zod .email()"
 
-8. COMMIT
+8. CODE SIMPLIFICATION
+   - Run /code-simplifier → cleaned up formatting, simplified conditionals
+   - Run npm test → All 15 tests still pass ✓
+
+9. COMMIT
    - git add . && git commit -m "feat: US-005 - Add email validation"
 
-9. UPDATE PROGRESS.TXT
-   - Append iteration log with learnings
+10. UPDATE PROGRESS.TXT
+    - Append iteration log with learnings
 
-10. REPORT
+11. REPORT
     - Return: { success: true, filesChanged: [...], learnings: "..." }
 ```

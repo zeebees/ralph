@@ -94,7 +94,15 @@ If you discovered reusable patterns:
 
 **Do NOT add**: Story-specific details, temporary notes, obvious info.
 
-### 9. Commit
+### 9. Code Simplification
+
+Before committing, run the code-simplifier to clean up your changes:
+- Use `/code-simplifier` to review and simplify recently modified code
+- Focus on clarity, consistency, and maintainability
+- Ensure all functionality is preserved
+- If the simplifier makes changes, verify tests still pass: `{testCommand from prd.json}`
+
+### 10. Commit
 
 ```bash
 git add .
@@ -103,7 +111,7 @@ git commit -m "feat: {storyId} - {story.title}"
 
 Do NOT push (orchestrator handles that).
 
-### 10. Update progress.txt
+### 11. Update progress.txt
 
 Append:
 ```
@@ -118,11 +126,11 @@ Append:
 
 Add reusable patterns to the `## Codebase Patterns` section at top.
 
-### 11. Update prd.json
+### 12. Update prd.json
 
 Set `passes: true` for this story.
 
-### 12. Report
+### 13. Report
 
 Output results:
 ```json
@@ -146,6 +154,7 @@ Before reporting success:
 - [ ] Build passes
 - [ ] Code follows existing patterns
 - [ ] AGENTS.md updated (if applicable)
+- [ ] Code simplified with `/code-simplifier`
 - [ ] Commit made with proper message
 - [ ] progress.txt updated
 - [ ] prd.json updated
